@@ -5,17 +5,15 @@ import {
   HostGrotesk_700Bold,
   useFonts,
 } from '@expo-google-fonts/host-grotesk';
+import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
-import { View } from 'react-native';
-
 import { useEffect } from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { Home } from './screens/Home';
-import './styles/global.css';
+import '../styles/global.css';
 
 SplashScreen.preventAutoHideAsync();
 
-export default function App() {
+export default function RootLayout() {
   const [loaded, error] = useFonts({
     HostGrotesk_400Regular,
     HostGrotesk_500Medium,
@@ -32,12 +30,9 @@ export default function App() {
   if (!loaded && !error) {
     return null;
   }
-
   return (
-    <View className="flex-1 bg-white">
-      <SafeAreaProvider>
-        <Home />
-      </SafeAreaProvider>
-    </View>
+    <SafeAreaProvider>
+      <Stack screenOptions={{ headerShown: false }}/>
+    </SafeAreaProvider>
   );
 }
